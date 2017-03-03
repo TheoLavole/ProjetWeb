@@ -1,5 +1,6 @@
 package ensai.web;
 
+import java.io.IOException;
 import java.util.List;
 
 import twitter4j.Paging;
@@ -17,7 +18,9 @@ import twitter4j.conf.ConfigurationBuilder;
  *
  */
 public class App {
-	public static void main(String[] args) throws IllegalStateException, TwitterException {
+	public static void main(String[] args) throws Exception {
 		new SearchTwitter("#LCK");
+		SearchMeteo meteo = new SearchMeteo();
+		meteo.getConditions("Rennes");
 	}
 }
