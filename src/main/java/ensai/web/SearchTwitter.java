@@ -19,17 +19,23 @@ public class SearchTwitter {
 				.setOAuthAccessTokenSecret("Oc1Wl3RLINHYFzEFOdi1yxaMzzIhJvoE2tcPdrzugKzsY");
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
-
+		
 		// Ce qu'on recherche
 		Query q = new Query(recherche);
 		q.setCount(100);
 		List<Status> statuses = twitter.search(q).getTweets();
 		for (Status status : statuses) {
 			// Date
-			System.out.println(status.getCreatedAt());
-			// Nom + Texte
-			System.out.println(status.getUser().getName() + " : " + status.getText());
+			System.out.println("Creat : "+status.getCreatedAt());
+			// Nom
+			System.out.println("By : "+status.getUser().getName());
+			// Localisation
 			System.out.println("Loc : "+status.getUser().getLocation());
+			// Message
+			System.out.println("Message : "+ status.getText());
+			// Source
+			System.out.println("Source : "+status.getSource());
+			System.out.println("---------------------------------------------------------");
 		}
 	}
 	

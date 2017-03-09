@@ -19,9 +19,9 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public class App {
 	public static void main(String[] args) throws Exception {
-//		new SearchTwitter("#TrumpFact");
-		SearchMeteo meteo = new SearchMeteo();
-		meteo.getConditions("Rennes");
+		new SearchTwitter("#FCBPSG");
+//		SearchMeteo meteo = new SearchMeteo();
+//		meteo.getConditions("Rennes");
 	}
 }
 
