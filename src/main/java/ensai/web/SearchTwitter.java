@@ -22,11 +22,50 @@ public class SearchTwitter {
 			TwitterFactory tf = new TwitterFactory(cb.build());
 			Twitter twitter = tf.getInstance();
 
-			System.out.println(recherche);
 			// Ce qu'on recherche
 			Query q = new Query(recherche);
 			// Ajouter un emplacement
 			q.geoCode(new GeoLocation(48.856614,2.3522219000000177), 10.00, "km");
+			// dire combien on veut de retours
+			q.setCount(100);
+			
+			List<Status> tweets = twitter.search(q).getTweets();
+			for (Status currentTweet : tweets) {
+				GeoLocation loc = currentTweet.getGeoLocation();
+				if (loc != null) {
+					System.out.println(loc);
+				}
+				// Date
+				System.out.println("Creat : " + currentTweet.getCreatedAt());
+				// Nom
+				System.out.println("By : " + currentTweet.getUser().getName());
+				// Localisation
+				System.out.println("Loc : " + currentTweet.getUser().getLocation());
+				// Message
+				System.out.println("Message : " + currentTweet.getText());
+				// Source
+				System.out.println("Source : " + currentTweet.getSource());
+				System.out.println("---------------------------------------------------------");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public SearchTwitter(String recherche, Double[] location, double rayon) throws TwitterException {
+		try {
+			ConfigurationBuilder cb = new ConfigurationBuilder();
+			cb.setDebugEnabled(true).setOAuthConsumerKey("ePCYTxOV0J28ol4iE2mSxUYej")
+					.setOAuthConsumerSecret("sFsaQzueveR8boFFbbngjQ8DUrQRvNAvGnKGcnzOBo407nz0h8")
+					.setOAuthAccessToken("837234720660406272-g2cbn4CbndBlHS8mXKl5529w0J2sHZC")
+					.setOAuthAccessTokenSecret("Oc1Wl3RLINHYFzEFOdi1yxaMzzIhJvoE2tcPdrzugKzsY");
+			TwitterFactory tf = new TwitterFactory(cb.build());
+			Twitter twitter = tf.getInstance();
+
+			// Ce qu'on recherche
+			Query q = new Query(recherche);
+			// Ajouter un emplacement
+			q.geoCode(new GeoLocation(location[0],location[1]), rayon, "km");
 			// dire combien on veut de retours
 			q.setCount(100);
 			

@@ -12,7 +12,7 @@ import twitter4j.JSONArray;
 
 public class SearchGoogleMap {
 	
-	static void getLocation(String city) throws Exception, IOException {
+	static Double[] getLocation(String city) throws Exception, IOException {
 	// récupérer le contenu de la page web
 			String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + city;
 			HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
@@ -35,8 +35,9 @@ public class SearchGoogleMap {
 			Double latitude = location.getDouble("lat");
 			Double longitude = location.getDouble("lng");
 
-			System.out.println("Latitude : " + latitude);
-			System.out.println("Longitude : " + longitude);
+			Double[] loc = {latitude,longitude};
+			
+			return loc;
 	}
 	
 }

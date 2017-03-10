@@ -67,6 +67,6 @@ public class SearchMeteo {
 		System.out.println("Pression ATM : " + pressure);
 		System.out.println("Humidité : " + humidity);
 		System.out.println("Condition : " + condition);
-
+		System.out.println();
 	}
 }
