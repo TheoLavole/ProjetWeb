@@ -1,6 +1,7 @@
 package ensai.web;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -21,19 +22,23 @@ public class App {
 		String condition = meteo.getConditions(ville);
 
 		Date today = new Date();
-		System.out.println(today.getYear()+"-"+today.getMonth()+"-"+today.getDate());
-		
-		// utiliser la loc trouvée avant pour les tweets
-		int nbTweetsPos = 0;
-		int nbTweetsNeg = 0;
-		// :) pour les tweets positifs, :( pour les tweets négatifs
-		nbTweetsPos = new SearchTwitter(recherche + " :)", location, 10.00).nbTweets;
-		nbTweetsNeg = new SearchTwitter(recherche + " since:2017-03-09 :(", location, 10.00).nbTweets;
+		String date_str = (today.getYear() + 1900) + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 
-		System.out.println("Recherche -> "+recherche);
-		System.out.println("Lieu      -> "+ville);
-		System.out.println("Météo     -> "+condition);
+		// utiliser la loc trouvée avant pour les tweets
+		int nbTweetsPos;
+		int nbTweetsNeg;
+		int nbTweets;
+
+		// :) pour les tweets positifs, :( pour les tweets négatifs
+		nbTweets = new SearchTwitter(recherche + " since:" + date_str, location, 10.00).nbTweets;
+		nbTweetsPos = new SearchTwitter(recherche + " since:" + date_str + " :)", location, 10.00).nbTweets;
+		nbTweetsNeg = new SearchTwitter(recherche + " since:" + date_str + " :(", location, 10.00).nbTweets;
+
+		System.out.println("Recherche -> " + recherche);
+		System.out.println("Lieu      -> " + ville);
+		System.out.println("Météo     -> " + condition);
 		System.out.println(":)        -> " + nbTweetsPos);
 		System.out.println(":(        -> " + nbTweetsNeg);
+		System.out.println("Total : " + nbTweets);
 	}
 }
