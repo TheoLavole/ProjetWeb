@@ -1,7 +1,5 @@
 package ensai.web;
 
-import java.io.IOException;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -14,12 +12,12 @@ public class App {
 	}
 
 	public static void dataVille(String recherche, String ville) throws Exception {
+		new SearchGoogleMap();
 		// Obtenir le latitude et longitude d'une ville (API GoogleMap)
-		Double[] location = new SearchGoogleMap().getLocation(ville);
+		Double[] location = SearchGoogleMap.getLocation(ville);
 
 		// Obtenir la météo
-		SearchMeteo meteo = new SearchMeteo();
-		String condition = meteo.getConditions(ville);
+		String condition = SearchMeteo.getConditions(ville);
 
 		Date today = new Date();
 		String date_str = (today.getYear() + 1900) + "-" + (today.getMonth() + 1) + "-" + today.getDate();

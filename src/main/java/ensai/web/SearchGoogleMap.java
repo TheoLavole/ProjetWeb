@@ -4,11 +4,8 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
 import org.json.JSONObject;
-
-import twitter4j.JSONArray;
 
 public class SearchGoogleMap {
 	

@@ -71,7 +71,7 @@ public class SearchTwitter {
 
 			List<Status> tweets = twitter.search(q).getTweets();
 			for (Status currentTweet : tweets) {
-				GeoLocation loc = currentTweet.getGeoLocation();
+//				GeoLocation loc = currentTweet.getGeoLocation();
 //				if (loc != null) {
 //					System.out.println(loc);
 //				}
