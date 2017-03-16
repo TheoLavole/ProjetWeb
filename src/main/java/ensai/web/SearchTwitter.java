@@ -76,7 +76,7 @@ public class SearchTwitter {
 //					System.out.println(loc);
 //				}
 //				// Date
-				System.out.println("Creat : " + currentTweet.getCreatedAt());
+//				System.out.println("Creat : " + currentTweet.getCreatedAt());
 //				// Nom
 //				System.out.println("By : " + currentTweet.getUser().getName());
 //				// Localisation
