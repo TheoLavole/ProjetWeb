@@ -12,6 +12,8 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class SearchTwitter {
 
+	public int nbTweets = 0;
+	
 	public SearchTwitter(String recherche) throws TwitterException {
 		try {
 			ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -24,11 +26,9 @@ public class SearchTwitter {
 
 			// Ce qu'on recherche
 			Query q = new Query(recherche);
-			// Ajouter un emplacement
-			q.geoCode(new GeoLocation(48.856614,2.3522219000000177), 10.00, "km");
 			// dire combien on veut de retours
 			q.setCount(100);
-			
+
 			List<Status> tweets = twitter.search(q).getTweets();
 			for (Status currentTweet : tweets) {
 				GeoLocation loc = currentTweet.getGeoLocation();
@@ -51,7 +51,7 @@ public class SearchTwitter {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public SearchTwitter(String recherche, Double[] location, double rayon) throws TwitterException {
 		try {
 			ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -65,27 +65,28 @@ public class SearchTwitter {
 			// Ce qu'on recherche
 			Query q = new Query(recherche);
 			// Ajouter un emplacement
-			q.geoCode(new GeoLocation(location[0],location[1]), rayon, "km");
+			q.geoCode(new GeoLocation(location[0], location[1]), rayon, "km");
 			// dire combien on veut de retours
 			q.setCount(100);
-			
+
 			List<Status> tweets = twitter.search(q).getTweets();
 			for (Status currentTweet : tweets) {
 				GeoLocation loc = currentTweet.getGeoLocation();
-				if (loc != null) {
-					System.out.println(loc);
-				}
-				// Date
+//				if (loc != null) {
+//					System.out.println(loc);
+//				}
+//				// Date
 				System.out.println("Creat : " + currentTweet.getCreatedAt());
-				// Nom
-				System.out.println("By : " + currentTweet.getUser().getName());
-				// Localisation
-				System.out.println("Loc : " + currentTweet.getUser().getLocation());
-				// Message
-				System.out.println("Message : " + currentTweet.getText());
-				// Source
-				System.out.println("Source : " + currentTweet.getSource());
-				System.out.println("---------------------------------------------------------");
+//				// Nom
+//				System.out.println("By : " + currentTweet.getUser().getName());
+//				// Localisation
+//				System.out.println("Loc : " + currentTweet.getUser().getLocation());
+//				// Message
+//				System.out.println("Message : " + currentTweet.getText());
+//				// Source
+//				System.out.println("Source : " + currentTweet.getSource());
+//				System.out.println("---------------------------------------------------------");
+				nbTweets++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

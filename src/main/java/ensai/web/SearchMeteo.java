@@ -16,7 +16,7 @@ import org.w3c.dom.NodeList;
 import org.json.*;
 
 public class SearchMeteo {
-	static void getConditions(String city) throws Exception, IOException {
+	static String getConditions(String city) throws Exception, IOException {
 		// récupérer le contenu de la page web
 		String url = "http://www.prevision-meteo.ch/services/json/" + city;
 		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
@@ -51,22 +51,24 @@ public class SearchMeteo {
 		int humidity = obj.getJSONObject("current_condition").getInt("humidity");
 		String condition = obj.getJSONObject("current_condition").getString("condition");
 
-		System.out.println("Ville : " + name);
-		System.out.println("Pays : " + country);
-		System.out.println("Latitude : " + latitude);
-		System.out.println("Longitude : " + longitude);
-		System.out.println("Elevation : " + elevation);
-		System.out.println("Lever de soleil : " + sunrise);
-		System.out.println("Coucher de soleil : " + sunset);
-		System.out.println("Date : " + date);
-		System.out.println("Heure : " + hour);
-		System.out.println("Temperature : " + temperature);
-		System.out.println("Vitesse du vent : " + wnd_spd + " km/h");
-		System.out.println("Rafales jusqu'à : " + wnd_gust + " km/h");
-		System.out.println("Direction du vent : " + wnd_dir);
-		System.out.println("Pression ATM : " + pressure);
-		System.out.println("Humidité : " + humidity);
-		System.out.println("Condition : " + condition);
-		System.out.println();
+//		System.out.println("Ville : " + name);
+//		System.out.println("Pays : " + country);
+//		System.out.println("Latitude : " + latitude);
+//		System.out.println("Longitude : " + longitude);
+//		System.out.println("Elevation : " + elevation);
+//		System.out.println("Lever de soleil : " + sunrise);
+//		System.out.println("Coucher de soleil : " + sunset);
+//		System.out.println("Date : " + date);
+//		System.out.println("Heure : " + hour);
+//		System.out.println("Temperature : " + temperature);
+//		System.out.println("Vitesse du vent : " + wnd_spd + " km/h");
+//		System.out.println("Rafales jusqu'à : " + wnd_gust + " km/h");
+//		System.out.println("Direction du vent : " + wnd_dir);
+//		System.out.println("Pression ATM : " + pressure);
+//		System.out.println("Humidité : " + humidity);
+//		System.out.println("Condition : " + condition);
+//		System.out.println();
+		
+		return condition;
 	}
 }
