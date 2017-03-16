@@ -39,6 +39,6 @@ public class App {
 		System.out.println("Météo     -> " + condition);
 		System.out.println(":)        -> " + nbTweetsPos);
 		System.out.println(":(        -> " + nbTweetsNeg);
-		System.out.println("Total : " + nbTweets);
+		System.out.println("Total     -> " + nbTweets);
 	}
 }
