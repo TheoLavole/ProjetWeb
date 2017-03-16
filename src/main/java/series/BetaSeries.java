@@ -69,6 +69,7 @@ public class BetaSeries {
 			calendar.add(Calendar.DATE, -1);
 			Date date =  calendar.getTime();
 			semaine.add(dateFormat.format(date));
+			System.out.println(semaine.get(k));
 		}
 
 		double[] res = new double[semaine.size()];
