@@ -65,11 +65,12 @@ public class BetaSeries {
 		calendar.add(Calendar.DATE, -0);
 		Date date0 =  calendar.getTime();
 		semaine.add(dateFormat.format(date0));
+		//System.out.println(semaine.get(0));
 		for(int k = 1; k < 7; k++){
 			calendar.add(Calendar.DATE, -1);
 			Date date =  calendar.getTime();
 			semaine.add(dateFormat.format(date));
-			System.out.println(semaine.get(k));
+			//System.out.println(semaine.get(k));
 		}
 
 		double[] res = new double[semaine.size()];
