@@ -1,4 +1,4 @@
-package ensai.web;
+package google.map;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import org.json.JSONObject;
 
 public class SearchGoogleMap {
 	
-	static Double[] getLocation(String city) throws Exception, IOException {
+	public static Double[] getLocation(String city) throws Exception, IOException {
 	// récupérer le contenu de la page web
 			String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + city;
 			HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();

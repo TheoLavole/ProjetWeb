@@ -1,4 +1,4 @@
-package ensai.web;
+package twitter;
 
 import java.util.List;
 

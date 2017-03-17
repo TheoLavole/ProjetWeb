@@ -1,4 +1,4 @@
-package ensai.web;
+package meteo;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.net.URL;
 import org.json.JSONObject;
 
 public class SearchMeteo {
-	static String getConditions(String city) throws Exception, IOException {
+	public static String getConditions(String city) throws Exception, IOException {
 		// récupérer le contenu de la page web
 		String url = "http://www.prevision-meteo.ch/services/json/" + city;
 		HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();

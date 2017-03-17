@@ -1,6 +1,10 @@
-package ensai.web;
+package main;
 
 import java.util.Date;
+
+import google.map.SearchGoogleMap;
+import meteo.SearchMeteo;
+import twitter.SearchTwitter;
 
 /**
  * Hello world!
