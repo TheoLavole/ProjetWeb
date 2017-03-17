@@ -1,0 +1,103 @@
+package itunes.parameters;
+
+import static itunes.parameters.DefaultParameters.DEFAULT_COUNTRY;
+import static itunes.parameters.DefaultParameters.DEFAULT_LANG;
+import static itunes.parameters.DefaultParameters.DEFAULT_LIMIT;
+import static itunes.parameters.DefaultParameters.DEFAULT_MEDIA;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import itunes.parameters.parameter.Country;
+import itunes.parameters.parameter.Lang;
+import itunes.parameters.parameter.Limit;
+import itunes.parameters.parameter.Media;
+import itunes.parameters.parameter.attributes.Attribute;
+import itunes.parameters.parameter.entities.Entity;
+
+/**
+ * @author szagriichuk
+ */
+public class SearchParameters implements Parameters {
+    private List<String> terms = new ArrayList<String>();
+    private Country country = DEFAULT_COUNTRY;
+    private Media media = DEFAULT_MEDIA;
+    private Entity entity;
+    private Attribute attribute;
+    private Limit limit = DEFAULT_LIMIT;
+    private Lang lang = DEFAULT_LANG;
+
+    public void addQueryTerm(String queryTerm) {
+        terms.add(queryTerm);
+    }
+
+    public List<String> getTerms() {
+        return terms;
+    }
+
+    /**
+     * Returns instance of {@link Country}. If {@code Country} was set uped to {@code null} will be returned
+     * {@link DefaultParameters#DEFAULT_COUNTRY}
+     */
+
+    public Country getCountry() {
+        return country == null ? DEFAULT_COUNTRY : country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    /**
+     * Returns instance of {@link Media}. If {@code Media} was set uped to {@code null} will be returned
+     * {@link DefaultParameters#DEFAULT_MEDIA}
+     */
+    public Media getMedia() {
+        return media == null ? DEFAULT_MEDIA : media;
+    }
+
+    public void setMedia(Media media) {
+        this.media = media;
+    }
+
+    public Entity getEntity() {
+        return entity;
+    }
+
+    public void setEntity(Entity entity) {
+        this.entity = entity;
+    }
+
+    public Attribute getAttribute() {
+        return attribute;
+    }
+
+    public void setAttribute(Attribute attribute) {
+        this.attribute = attribute;
+    }
+
+    /**
+     * Returns instance of {@link Lang}. If {@code Lang} was set uped to {@code null} will be returned
+     * {@link DefaultParameters#DEFAULT_LANG}
+     */
+    public Lang getLang() {
+        return lang == null ? DEFAULT_LANG : lang;
+    }
+
+    public void setLang(Lang lang) {
+        this.lang = lang;
+    }
+
+    /**
+     * Returns instance of {@link Limit}. If {@code Limit} was set uped to {@code null} will be returned
+     * {@link DefaultParameters#DEFAULT_LIMIT}
+     */
+
+    public Limit getLimit() {
+        return limit == null ? DEFAULT_LIMIT : limit;
+    }
+
+    public void setLimit(Limit limit) {
+        this.limit = limit;
+    }
+}

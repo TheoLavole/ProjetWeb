@@ -3,6 +3,7 @@ package main;
 import java.util.Date;
 
 import google.map.SearchGoogleMap;
+import itunes.Request;
 import meteo.SearchMeteo;
 import twitter.SearchTwitter;
 
@@ -42,5 +43,15 @@ public class App {
 		System.out.println(":)        -> " + nbTweetsPos);
 		System.out.println(":(        -> " + nbTweetsNeg);
 		System.out.println("Total     -> " + nbTweets);
+		System.out.println("-------------------------------------------");
+
+		// utilisation de l'API iTunes
+		itunes.Request r = new itunes.Request();
+		r.setValeurWhere("Berg");
+		double[] resultat = itunes.ApiRequest.artistAction(r);
+		for (int k = 0; k < resultat.length; k++) {
+			System.out.println(resultat[k] + "\n");
+		}
 	}
+
 }
