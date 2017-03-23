@@ -38,7 +38,7 @@ public class ApiRequest {
 			artists[i] = SearchResults.getJSONObject(i).getString("artistName");
 
 		}
-		System.out.println(data.toString());
+//		System.out.println(data.toString());
 		return artists;
 	}    
 
@@ -53,7 +53,7 @@ public class ApiRequest {
 			calendar.add(Calendar.DATE, -1);
 			Date date =  calendar.getTime();
 			semaine.add(dateFormat.format(date));
-			System.out.println(semaine.get(k));
+//			System.out.println(semaine.get(k));
 		}
 		double[] result = new double[7];
 		for(int i=0;i<7; i++){

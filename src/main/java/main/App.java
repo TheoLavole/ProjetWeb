@@ -5,6 +5,7 @@ import java.util.Date;
 import google.map.SearchGoogleMap;
 import itunes.Request;
 import meteo.SearchMeteo;
+import series.BetaSeries;
 import twitter.SearchTwitter;
 
 /**
@@ -47,11 +48,20 @@ public class App {
 
 		// utilisation de l'API iTunes
 		itunes.Request r = new itunes.Request();
-		r.setValeurWhere("Berg");
+		r.setValeurWhere("Headstrong");
 		double[] resultat = itunes.ApiRequest.artistAction(r);
 		for (int k = 0; k < resultat.length; k++) {
-			System.out.println(resultat[k] + "\n");
+			System.out.println(k + " : " +resultat[k]);
 		}
+		System.out.println("-------------------------------------------");
+		
+		// Beta series
+		series.Request r2 = new series.Request();
+		r2.setValeurWhere("Fear The WALKING Dead");
+		double[] res = BetaSeries.series(r2);
+		for(int k = 0; k < res.length; k++){   
+			System.out.print(res[k] + " "); 
+		} 
 	}
 
 }

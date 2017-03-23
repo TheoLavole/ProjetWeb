@@ -18,24 +18,12 @@ import series.Request;
 
 public class BetaSeries {
 
-	public static void main(String[] args) throws IOException {
-
-		Request r = new Request();
-		r.setValeurWhere("Fear The WALKING Dead");
-		double[] res = series(r);
-		for(int k = 0; k < res.length; k++){   
-			System.out.print(res[k] + " "); 
-		} 
-
-	}
-
-
 	// Méthode qui retourne une matrice des titres de series et date de diffusion, avec les options suivantes (juste type pour l'instant) :
 	//  date : Date d'origine (YYYY-MM-JJ — Facultatif, par défaut "now")
 	//  before : Nombre de jours avant (Facultatif, par défaut 8)
 	//  after : Nombre de jours après (Facultatif, par défaut 8)
 	//  type : Type d'épisodes à afficher : "all" ou "premieres" (Facultatif, par défaut "all")
-	public static double[] series(Request r) throws IOException{
+	public static double[] series(series.Request r2) throws IOException{
 		String resGet = getResURL("https://api.betaseries.com/planning/general?v=2.4&key=81134c7c1f29&before=8&after=0&type=all");
 
 		JSONObject tout = new JSONObject(resGet);
@@ -87,7 +75,7 @@ public class BetaSeries {
 				//verifier qu'on est sur la serie demandé
 				//System.out.println(resURL[0][j] + " =? " + r.getValeurWhere() + " le " + resURL[1][j]);
 				String a = resURL[0][j].toLowerCase();
-				String b = r.getValeurWhere().toLowerCase();
+				String b = r2.getValeurWhere().toLowerCase();
 				if(a.contains(b)){
 					//incrémenter le compteur à l'index correspondant à la bonne date
 					//System.out.println(semaine.indexOf(resURL[1][j]));
