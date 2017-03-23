@@ -3,7 +3,6 @@ package main;
 import java.util.Date;
 
 import google.map.SearchGoogleMap;
-import itunes.Request;
 import meteo.SearchMeteo;
 import series.BetaSeries;
 import twitter.SearchTwitter;
@@ -14,7 +13,7 @@ import twitter.SearchTwitter;
  */
 public class App {
 	public static void main(String[] args) throws Exception {
-		dataVille("Game of thrones", "Paris");
+		dataVille("The Walking Dead", "Paris");
 	}
 
 	public static void dataVille(String recherche, String ville) throws Exception {
@@ -47,20 +46,22 @@ public class App {
 		System.out.println("-------------------------------------------");
 
 		// utilisation de l'API iTunes
-		itunes.Request r = new itunes.Request();
-		r.setValeurWhere("Headstrong");
+		main.Request r = new main.Request();
+		r.setValeurWhere("recherche");
 		double[] resultat = itunes.ApiRequest.artistAction(r);
+		System.out.println("Résultat de la recherche sur l'API iTunes");
 		for (int k = 0; k < resultat.length; k++) {
-			System.out.println(k + " : " +resultat[k]);
+			System.out.println("Jour "+k + " : " +resultat[k]);
 		}
 		System.out.println("-------------------------------------------");
 		
 		// Beta series
-		series.Request r2 = new series.Request();
-		r2.setValeurWhere("Fear The WALKING Dead");
+		Request r2 = new Request();
+		r2.setValeurWhere(recherche);
 		double[] res = BetaSeries.series(r2);
+		System.out.println("Résultat de la recherche sur l'API BetaSeries");
 		for(int k = 0; k < res.length; k++){   
-			System.out.print(res[k] + " "); 
+			System.out.println("Jour "+k+" : "+res[k]); 
 		} 
 	}
 

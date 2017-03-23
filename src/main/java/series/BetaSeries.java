@@ -14,7 +14,7 @@ import java.util.List;
 
 import org.json.*;
 
-import series.Request;
+import main.Request;
 
 public class BetaSeries {
 
@@ -23,7 +23,7 @@ public class BetaSeries {
 	//  before : Nombre de jours avant (Facultatif, par défaut 8)
 	//  after : Nombre de jours après (Facultatif, par défaut 8)
 	//  type : Type d'épisodes à afficher : "all" ou "premieres" (Facultatif, par défaut "all")
-	public static double[] series(series.Request r2) throws IOException{
+	public static double[] series(Request r2) throws IOException{
 		String resGet = getResURL("https://api.betaseries.com/planning/general?v=2.4&key=81134c7c1f29&before=8&after=0&type=all");
 
 		JSONObject tout = new JSONObject(resGet);
@@ -39,12 +39,12 @@ public class BetaSeries {
 		resURL[0] = titresSeries;
 		resURL[1] = dates;
 
-		for(int i = 0 ; i < resURL.length; i++ ){  
-			for(int j = 0; j< resURL[i].length; j++){   
-				System.out.print(resURL[i][j] + " / "); 
-			} 
-			System.out.println(" "); 
-		}
+//		for(int i = 0 ; i < resURL.length; i++ ){  
+//			for(int j = 0; j< resURL[i].length; j++){   
+//				System.out.print(resURL[i][j] + " / "); 
+//			} 
+//			System.out.println(" "); 
+//		}
 
 		//récupérer la liste des jours d'intérêt
 		Calendar calendar = Calendar.getInstance();
@@ -64,8 +64,8 @@ public class BetaSeries {
 		double[] res = new double[semaine.size()];
 		for(int h = 0; h <semaine.size(); h++){
 			res[h] = 0;
-			System.out.println(res[h]);
-			System.out.println(semaine.get(h));
+//			System.out.println(res[h]);
+//			System.out.println(semaine.get(h));
 		}
 
 

@@ -15,6 +15,7 @@ import itunes.parameters.SearchParameters;
 import itunes.parameters.parameter.Limit;
 import itunes.parameters.parameter.Media;
 import itunes.result.SearchResults;
+import main.Request;
 public class ApiRequest {
 	private static Logger logger = Logger.getGlobal();
 
