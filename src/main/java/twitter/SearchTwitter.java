@@ -31,21 +31,22 @@ public class SearchTwitter {
 
 			List<Status> tweets = twitter.search(q).getTweets();
 			for (Status currentTweet : tweets) {
-				GeoLocation loc = currentTweet.getGeoLocation();
-				if (loc != null) {
-					System.out.println(loc);
-				}
-				// Date
-				System.out.println("Creat : " + currentTweet.getCreatedAt());
-				// Nom
-				System.out.println("By : " + currentTweet.getUser().getName());
-				// Localisation
-				System.out.println("Loc : " + currentTweet.getUser().getLocation());
-				// Message
-				System.out.println("Message : " + currentTweet.getText());
-				// Source
-				System.out.println("Source : " + currentTweet.getSource());
-				System.out.println("---------------------------------------------------------");
+//				GeoLocation loc = currentTweet.getGeoLocation();
+//				if (loc != null) {
+//					System.out.println(loc);
+//				}
+//				// Date
+//				System.out.println("Creat : " + currentTweet.getCreatedAt());
+//				// Nom
+//				System.out.println("By : " + currentTweet.getUser().getName());
+//				// Localisation
+//				System.out.println("Loc : " + currentTweet.getUser().getLocation());
+//				// Message
+//				System.out.println("Message : " + currentTweet.getText());
+//				// Source
+//				System.out.println("Source : " + currentTweet.getSource());
+//				System.out.println("---------------------------------------------------------");
+				nbTweets++;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

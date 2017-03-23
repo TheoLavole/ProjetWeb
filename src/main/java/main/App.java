@@ -13,10 +13,11 @@ import twitter.SearchTwitter;
  */
 public class App {
 	public static void main(String[] args) throws Exception {
-		dataVille("The Walking Dead", "Paris");
+		recherche("The Walking Dead", "Paris");
+		recherche("The Walking Dead");
 	}
 
-	public static void dataVille(String recherche, String ville) throws Exception {
+	public static void recherche(String recherche, String ville) throws Exception {
 		new SearchGoogleMap();
 		// Obtenir le latitude et longitude d'une ville (API GoogleMap)
 		Double[] location = SearchGoogleMap.getLocation(ville);
@@ -37,13 +38,14 @@ public class App {
 		nbTweetsPos = new SearchTwitter(recherche + " since:" + date_str + " :)", location, 10.00).nbTweets;
 		nbTweetsNeg = new SearchTwitter(recherche + " since:" + date_str + " :(", location, 10.00).nbTweets;
 
+		System.out.println("**********************************************");
 		System.out.println("Recherche -> " + recherche);
 		System.out.println("Lieu      -> " + ville);
 		System.out.println("Météo     -> " + condition);
 		System.out.println(":)        -> " + nbTweetsPos);
 		System.out.println(":(        -> " + nbTweetsNeg);
 		System.out.println("Total     -> " + nbTweets);
-		System.out.println("-------------------------------------------");
+		System.out.println("----------------------------------------------");
 
 		// utilisation de l'API iTunes
 		main.Request r = new main.Request();
@@ -53,7 +55,49 @@ public class App {
 		for (int k = 0; k < resultat.length; k++) {
 			System.out.println("Jour "+k + " : " +resultat[k]);
 		}
-		System.out.println("-------------------------------------------");
+		System.out.println("----------------------------------------------");
+		
+		// Beta series
+		Request r2 = new Request();
+		r2.setValeurWhere(recherche);
+		double[] res = BetaSeries.series(r2);
+		System.out.println("Résultat de la recherche sur l'API BetaSeries");
+		for(int k = 0; k < res.length; k++){   
+			System.out.println("Jour "+k+" : "+res[k]); 
+		} 
+	}
+	
+	public static void recherche(String recherche) throws Exception {
+
+		Date today = new Date();
+		String date_str = (today.getYear() + 1900) + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+
+		// utiliser la loc trouvée avant pour les tweets
+		int nbTweetsPos;
+		int nbTweetsNeg;
+		int nbTweets;
+
+		// :) pour les tweets positifs, :( pour les tweets négatifs
+		nbTweets = new SearchTwitter(recherche + " since:" + date_str).nbTweets;
+		nbTweetsPos = new SearchTwitter(recherche + " since:" + date_str + " :)").nbTweets;
+		nbTweetsNeg = new SearchTwitter(recherche + " since:" + date_str + " :(").nbTweets;
+
+		System.out.println("**********************************************");
+		System.out.println("Recherche -> " + recherche);
+		System.out.println(":)        -> " + nbTweetsPos);
+		System.out.println(":(        -> " + nbTweetsNeg);
+		System.out.println("Total     -> " + nbTweets);
+		System.out.println("----------------------------------------------");
+
+		// utilisation de l'API iTunes
+		main.Request r = new main.Request();
+		r.setValeurWhere("recherche");
+		double[] resultat = itunes.ApiRequest.artistAction(r);
+		System.out.println("Résultat de la recherche sur l'API iTunes");
+		for (int k = 0; k < resultat.length; k++) {
+			System.out.println("Jour "+k + " : " +resultat[k]);
+		}
+		System.out.println("----------------------------------------------");
 		
 		// Beta series
 		Request r2 = new Request();
