@@ -1,6 +1,10 @@
 package main;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import google.map.SearchGoogleMap;
 import meteo.SearchMeteo;
@@ -14,7 +18,7 @@ import twitter.SearchTwitter;
 public class App {
 	public static void main(String[] args) throws Exception {
 		recherche("The Walking Dead", "Paris");
-		recherche("The Walking Dead");
+		// recherche("The Walking Dead");
 	}
 
 	public static void recherche(String recherche, String ville) throws Exception {
@@ -28,45 +32,72 @@ public class App {
 		Date today = new Date();
 		String date_str = (today.getYear() + 1900) + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 
+		// récupérer la liste des jours d'intérêt
+		Calendar calendar = Calendar.getInstance();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		List<String> semaine = new ArrayList<String>();
+		calendar.add(Calendar.DATE, -0);
+		Date date0 = calendar.getTime();
+		semaine.add(dateFormat.format(date0));
+		
+		// RAJOUT
+		int nbTweetsPas = 0;
+		int nbTweetsPosPas = 0;
+		int nbTweetsNegPas = 0;
+		// FIN RAJOUT
+		
 		// utiliser la loc trouvée avant pour les tweets
 		int nbTweetsPos;
 		int nbTweetsNeg;
 		int nbTweets;
-
-		// :) pour les tweets positifs, :( pour les tweets négatifs
-		nbTweets = new SearchTwitter(recherche + " since:" + date_str, location, 10.00).nbTweets;
-		nbTweetsPos = new SearchTwitter(recherche + " since:" + date_str + " :)", location, 10.00).nbTweets;
-		nbTweetsNeg = new SearchTwitter(recherche + " since:" + date_str + " :(", location, 10.00).nbTweets;
-
-		System.out.println("**********************************************");
-		System.out.println("Recherche -> " + recherche);
-		System.out.println("Lieu      -> " + ville);
-		System.out.println("Météo     -> " + condition);
-		System.out.println(":)        -> " + nbTweetsPos);
-		System.out.println(":(        -> " + nbTweetsNeg);
-		System.out.println("Total     -> " + nbTweets);
-		System.out.println("----------------------------------------------");
-
-		// utilisation de l'API iTunes
-		main.Request r = new main.Request();
-		r.setValeurWhere("recherche");
-		double[] resultat = itunes.ApiRequest.artistAction(r);
-		System.out.println("Résultat de la recherche sur l'API iTunes");
-		for (int k = 0; k < resultat.length; k++) {
-			System.out.println("Jour "+k + " : " +resultat[k]);
-		}
-		System.out.println("----------------------------------------------");
 		
-		// Beta series
-		Request r2 = new Request();
-		r2.setValeurWhere(recherche);
-		double[] res = BetaSeries.series(r2);
-		System.out.println("Résultat de la recherche sur l'API BetaSeries");
-		for(int k = 0; k < res.length; k++){   
-			System.out.println("Jour "+k+" : "+res[k]); 
-		} 
+		for (int k = 0; k < 7; k++) {
+			Date date = calendar.getTime();
+
+			// :) pour les tweets positifs, :( pour les tweets négatifs
+			nbTweets = new SearchTwitter(recherche + " since:" + dateFormat.format(date), location, 10.00).nbTweets - nbTweetsPas;
+			nbTweetsPos = new SearchTwitter(recherche + " since:" + dateFormat.format(date) + " :)", location,
+					10.00).nbTweets - nbTweetsPosPas;
+			nbTweetsNeg = new SearchTwitter(recherche + " since:" + dateFormat.format(date) + " :(", location,
+					10.00).nbTweets - nbTweetsNegPas;
+
+			
+			System.out.println("**********************************************");
+			System.out.println("Recherche -> " + recherche);
+			System.out.println("Lieu      -> " + ville);
+			System.out.println("Date      -> " + dateFormat.format(date));
+			System.out.println("Météo     -> " + condition);
+			System.out.println(":)        -> " + nbTweetsPos);
+			System.out.println(":(        -> " + nbTweetsNeg);
+			System.out.println("Total     -> " + nbTweets);
+			System.out.println("----------------------------------------------");
+
+			calendar.add(Calendar.DATE, -1);
+			nbTweetsPas += nbTweets;
+			nbTweetsPosPas+= nbTweetsPos;
+			nbTweetsNegPas += nbTweetsNeg;
+		}
+
+//		// utilisation de l'API iTunes
+//		main.Request r = new main.Request();
+//		r.setValeurWhere("recherche");
+//		double[] resultat = itunes.ApiRequest.artistAction(r);
+//		System.out.println("Résultat de la recherche sur l'API iTunes");
+//		for (int k = 0; k < resultat.length; k++) {
+//			System.out.println("Jour " + k + " : " + resultat[k]);
+//		}
+//		System.out.println("----------------------------------------------");
+//
+//		// Beta series
+//		Request r2 = new Request();
+//		r2.setValeurWhere(recherche);
+//		double[] res = BetaSeries.series(r2);
+//		System.out.println("Résultat de la recherche sur l'API BetaSeries");
+//		for (int k = 0; k < res.length; k++) {
+//			System.out.println("Jour " + k + " : " + res[k]);
+//		}
 	}
-	
+
 	public static void recherche(String recherche) throws Exception {
 
 		Date today = new Date();
@@ -95,18 +126,18 @@ public class App {
 		double[] resultat = itunes.ApiRequest.artistAction(r);
 		System.out.println("Résultat de la recherche sur l'API iTunes");
 		for (int k = 0; k < resultat.length; k++) {
-			System.out.println("Jour "+k + " : " +resultat[k]);
+			System.out.println("Jour " + k + " : " + resultat[k]);
 		}
 		System.out.println("----------------------------------------------");
-		
+
 		// Beta series
 		Request r2 = new Request();
 		r2.setValeurWhere(recherche);
 		double[] res = BetaSeries.series(r2);
 		System.out.println("Résultat de la recherche sur l'API BetaSeries");
-		for(int k = 0; k < res.length; k++){   
-			System.out.println("Jour "+k+" : "+res[k]); 
-		} 
+		for (int k = 0; k < res.length; k++) {
+			System.out.println("Jour " + k + " : " + res[k]);
+		}
 	}
 
 }
