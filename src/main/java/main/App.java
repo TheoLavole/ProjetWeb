@@ -18,7 +18,7 @@ import twitter.SearchTwitter;
 public class App {
 	public static void main(String[] args) throws Exception {
 		recherche("The Walking Dead", "Paris");
-		// recherche("The Walking Dead");
+		recherche("LCSEU");
 	}
 
 	public static void recherche(String recherche, String ville) throws Exception {
@@ -39,19 +39,19 @@ public class App {
 
 		// passé
 		int nbTweetsPas = 0;
-		int nbTweetsPosPas = 0;
-		int nbTweetsNegPas = 0;
+//		int nbTweetsPosPas = 0;
+//		int nbTweetsNegPas = 0;
 		// FIN RAJOUT
 
 		// total
-		int nbTweetsPos = 0;
-		int nbTweetsNeg = 0;
+//		int nbTweetsPos = 0;
+//		int nbTweetsNeg = 0;
 		int nbTweets = 0;
 
 		// stockage
-		int[] tweetsPos = new int[7];
+//		int[] tweetsPos = new int[7];
 		int[] tweetsTotal = new int[7];
-		int[] tweetsNeg = new int[7];
+//		int[] tweetsNeg = new int[7];
 
 		for (int k = 0; k < 7; k++) {
 			Date date = calendar.getTime();
@@ -59,45 +59,35 @@ public class App {
 			// tweets de l'instant k à maintenant
 			int nbTweetsActuels = new SearchTwitter(recherche + " since:" + dateFormat.format(date), location,
 					30.00).nbTweets;
-			int nbTweetsPosActuels = new SearchTwitter(recherche + " since:" + dateFormat.format(date) + " :)",
-					location, 30.00).nbTweets;
-			int nbTweetsNegActuels = new SearchTwitter(recherche + " since:" + dateFormat.format(date) + " :(",
-					location, 30.00).nbTweets;
+//			int nbTweetsPosActuels = new SearchTwitter(recherche + " since:" + dateFormat.format(date) + " :)",
+//					location, 30.00).nbTweets;
+//			int nbTweetsNegActuels = new SearchTwitter(recherche + " since:" + dateFormat.format(date) + " :(",
+//					location, 30.00).nbTweets;
 
 			// tweets du jour k
 			nbTweets = nbTweetsActuels - nbTweetsPas;
-			nbTweetsPos = nbTweetsPosActuels - nbTweetsPosPas;
-			nbTweetsNeg = nbTweetsNegActuels - nbTweetsNegPas;
+//			nbTweetsPos = nbTweetsPosActuels - nbTweetsPosPas;
+//			nbTweetsNeg = nbTweetsNegActuels - nbTweetsNegPas;
 
 			// stockage
-			tweetsPos[k] = nbTweetsPos;
-			tweetsNeg[k] = nbTweetsNeg;
+//			tweetsPos[k] = nbTweetsPos;
+//			tweetsNeg[k] = nbTweetsNeg;
 			tweetsTotal[k] = nbTweets;
 
 			// on change la date
 			calendar.add(Calendar.DATE, -1);
 
-//			System.out.println(dateFormat.format(date));
-//			System.out.println(
-//					"passé = " + nbTweetsPas + ", :) passé = " + nbTweetsPosPas + ", :( passé = " + nbTweetsNegPas);
-//			System.out.println(
-//					"présent = " + nbTweets + ", :) présent = " + nbTweetsPos + ", :( présent = " + nbTweetsNeg);
-//			System.out.println(
-//					"actuel = " + nbTweetsActuels + ", :) = " + nbTweetsPosActuels + ", :( = " + nbTweetsNegActuels);
-//			System.out.println();
-
 			// on change la valeur du passé
 			nbTweetsPas += nbTweets;
-			nbTweetsPosPas += nbTweetsPos;
-			nbTweetsNegPas += nbTweetsNeg;
+//			nbTweetsPosPas += nbTweetsPos;
+//			nbTweetsNegPas += nbTweetsNeg;
 		}
 		System.out.println("Lieu      -> " + ville);
 		System.out.println("Météo     -> " + condition);
 		System.out.println("**********************************************");
 		System.out.println("Résultat de la recherche sur l'API Twitter");
-		System.out.println("        :) - :( - total");
 		for (int k = 0; k < tweetsTotal.length; k++) {
-			System.out.println("Jour " + k + " : " + tweetsPos[k] + " - " + tweetsNeg[k] + " - " + tweetsTotal[k]);
+			System.out.println("Jour " + k + " : "+ tweetsTotal[k]);
 		}
 		System.out.println("----------------------------------------------");
 		// utilisation de l'API iTunes
@@ -132,37 +122,37 @@ public class App {
 
 		// RAJOUT
 		int nbTweetsPas = 0;
-		int nbTweetsPosPas = 0;
-		int nbTweetsNegPas = 0;
+//		int nbTweetsPosPas = 0;
+//		int nbTweetsNegPas = 0;
 		// FIN RAJOUT
 
 		// utiliser la loc trouvée avant pour les tweets
-		int nbTweetsPos;
-		int nbTweetsNeg;
+//		int nbTweetsPos;
+//		int nbTweetsNeg;
 		int nbTweets;
 
-		int[] tweetsPos = new int[7];
+//		int[] tweetsPos = new int[7];
 		int[] tweetsTotal = new int[7];
-		int[] tweetsNeg = new int[7];
+//		int[] tweetsNeg = new int[7];
 
 		for (int k = 0; k < 7; k++) {
 			Date date = calendar.getTime();
 
 			// tweets de l'instant k à maintenant
 			int nbTweetsActuels = new SearchTwitter(recherche + " since:" + dateFormat.format(date)).nbTweets;
-			int nbTweetsPosActuels = new SearchTwitter(
-					recherche + " since:" + dateFormat.format(date) + " :)").nbTweets;
-			int nbTweetsNegActuels = new SearchTwitter(
-					recherche + " since:" + dateFormat.format(date) + " :(").nbTweets;
+//			int nbTweetsPosActuels = new SearchTwitter(
+//					recherche + " since:" + dateFormat.format(date) + " :)").nbTweets;
+//			int nbTweetsNegActuels = new SearchTwitter(
+//					recherche + " since:" + dateFormat.format(date) + " :(").nbTweets;
 
 			// tweets du jour k
 			nbTweets = nbTweetsActuels - nbTweetsPas;
-			nbTweetsPos = nbTweetsPosActuels - nbTweetsPosPas;
-			nbTweetsNeg = nbTweetsNegActuels - nbTweetsNegPas;
+//			nbTweetsPos = nbTweetsPosActuels - nbTweetsPosPas;
+//			nbTweetsNeg = nbTweetsNegActuels - nbTweetsNegPas;
 
 			// stockage
-			tweetsPos[k] = nbTweetsPos;
-			tweetsNeg[k] = nbTweetsNeg;
+//			tweetsPos[k] = nbTweetsPos;
+//			tweetsNeg[k] = nbTweetsNeg;
 			tweetsTotal[k] = nbTweets;
 
 			// on change la date
@@ -178,14 +168,13 @@ public class App {
 
 			// on change la valeur du passé
 			nbTweetsPas += nbTweets;
-			nbTweetsPosPas += nbTweetsPos;
-			nbTweetsNegPas += nbTweetsNeg;
+//			nbTweetsPosPas += nbTweetsPos;
+//			nbTweetsNegPas += nbTweetsNeg;
 		}
 		System.out.println("**********************************************");
 		System.out.println("Résultat de la recherche sur l'API Twitter");
-		System.out.println("        :) - :( - total");
 		for (int k = 0; k < tweetsTotal.length; k++) {
-			System.out.println("Jour " + k + " : " + tweetsPos[k] + " - " + tweetsNeg[k] + " - " + tweetsTotal[k]);
+			System.out.println("Jour " + k + " : " + tweetsTotal[k]);
 		}
 		System.out.println("----------------------------------------------");
 		// utilisation de l'API iTunes
