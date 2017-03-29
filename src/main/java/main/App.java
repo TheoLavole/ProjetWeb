@@ -13,14 +13,15 @@ import twitter.SearchTwitter;
 
 public class App {
 	public static void main(String[] args) throws Exception {
-		rechercheTwitterBetaSeries("The Walking Dead", "Paris");
-//		rechercheTwitterBetaSeries("The Walking Dead");
-		
-//		rechercheTwitterItunes("The Walking Dead", "Paris");
-//		rechercheTwitterItunes("Eminem");
+//		rechercheTwitterBetaSeries("The Walking Dead", "Paris");
+		rechercheTwitterBetaSeries("LCS");
+
+		// rechercheTwitterItunes("The Walking Dead", "Paris");
+		// rechercheTwitterItunes("Eminem");
 	}
 
-	// Retourne le résultat de la recherche Twitter, BetaSeries et iTunes dans une ville
+	// Retourne le résultat de la recherche Twitter, BetaSeries et iTunes dans
+	// une ville
 	public static void recherche(String recherche, String ville) throws Exception {
 		new SearchGoogleMap();
 		// Obtenir le latitude et longitude d'une ville (API GoogleMap)
@@ -112,7 +113,8 @@ public class App {
 		}
 	}
 
-	// Retourne le résultat de la recherche Twitter, BetaSeries et iTunes partout dans le monde
+	// Retourne le résultat de la recherche Twitter, BetaSeries et iTunes
+	// partout dans le monde
 	public static void recherche(String recherche) throws Exception {
 
 		// récupérer la liste des jours d'intérêt
@@ -205,7 +207,8 @@ public class App {
 		}
 	}
 
-	// Retourne le résultat de la recherche sur Twitter et BetaSeries dans une ville
+	// Retourne le résultat de la recherche sur Twitter et BetaSeries dans une
+	// ville
 	public static void rechercheTwitterBetaSeries(String recherche, String ville) throws Exception {
 		// Obtenir le latitude et longitude d'une ville (API GoogleMap)
 		new SearchGoogleMap();
@@ -247,24 +250,24 @@ public class App {
 			// on change la valeur du passé
 			nbTweetsPas += nbTweets;
 		}
-		System.out.println("**********************************************");
+
 		System.out.println("Résultat de la recherche sur l'API Twitter");
 		for (int k = 0; k < tweetsTotal.length; k++) {
-			System.out.println("Jour " + k + " : " + tweetsTotal[k]);
+			System.out.print(tweetsTotal[k] + "\t");
 		}
-		System.out.println("----------------------------------------------");
-
 		// Beta series
 		Request r2 = new Request();
 		r2.setValeurWhere(recherche);
 		double[] res = BetaSeries.series(r2);
+		System.out.println();
 		System.out.println("Résultat de la recherche sur l'API BetaSeries");
 		for (int k = 0; k < res.length; k++) {
-			System.out.println("Jour " + k + " : " + res[k]);
+			System.out.print(res[k] + "\t");
 		}
 	}
 
-	// Retourne le résultat de la recherche sur Twitter et BetaSeries partout dans le monde
+	// Retourne le résultat de la recherche sur Twitter et BetaSeries partout
+	// dans le monde
 	public static void rechercheTwitterBetaSeries(String recherche) throws Exception {
 		// récupérer la liste des jours d'intérêt
 		Calendar calendar = Calendar.getInstance();
@@ -301,12 +304,12 @@ public class App {
 			// on change la valeur du passé
 			nbTweetsPas += nbTweets;
 		}
-		System.out.println("**********************************************");
+
 		System.out.println("Résultat de la recherche sur l'API Twitter");
 		for (int k = 0; k < tweetsTotal.length; k++) {
-			System.out.println("Jour " + k + " : " + tweetsTotal[k]);
+			System.out.print(tweetsTotal[k] + "\t");
 		}
-		System.out.println("----------------------------------------------");
+		System.out.println();
 
 		// Beta series
 		Request r2 = new Request();
@@ -314,7 +317,7 @@ public class App {
 		double[] res = BetaSeries.series(r2);
 		System.out.println("Résultat de la recherche sur l'API BetaSeries");
 		for (int k = 0; k < res.length; k++) {
-			System.out.println("Jour " + k + " : " + res[k]);
+			System.out.print(res[k] + "\t");
 		}
 	}
 
@@ -361,23 +364,23 @@ public class App {
 			nbTweetsPas += nbTweets;
 		}
 
-		System.out.println("**********************************************");
 		System.out.println("Résultat de la recherche sur l'API Twitter");
 		for (int k = 0; k < tweetsTotal.length; k++) {
-			System.out.println("Jour " + k + " : " + tweetsTotal[k]);
+			System.out.print(tweetsTotal[k] +"\t");
 		}
-		System.out.println("----------------------------------------------");
+		System.out.println();
 		// utilisation de l'API iTunes
 		main.Request r = new main.Request();
 		r.setValeurWhere("recherche");
 		double[] resultat = itunes.ApiRequest.artistAction(r);
 		System.out.println("Résultat de la recherche sur l'API iTunes");
 		for (int k = 0; k < resultat.length; k++) {
-			System.out.println("Jour " + k + " : " + resultat[k]);
+			System.out.print(resultat[k]+"\t");
 		}
 	}
 
-	// Retourne le résultat de la recherche sur Twitter et iTunes partout dans le monde
+	// Retourne le résultat de la recherche sur Twitter et iTunes partout dans
+	// le monde
 	public static void rechercheTwitterItunes(String recherche) throws Exception {
 		// récupérer la liste des jours d'intérêt
 		Calendar calendar = Calendar.getInstance();
@@ -415,19 +418,18 @@ public class App {
 			nbTweetsPas += nbTweets;
 		}
 
-		System.out.println("**********************************************");
 		System.out.println("Résultat de la recherche sur l'API Twitter");
 		for (int k = 0; k < tweetsTotal.length; k++) {
-			System.out.println("Jour " + k + " : " + tweetsTotal[k]);
+			System.out.print(tweetsTotal[k]+"\t");
 		}
-		System.out.println("----------------------------------------------");
+		System.out.println();
 		// utilisation de l'API iTunes
 		main.Request r = new main.Request();
 		r.setValeurWhere("recherche");
 		double[] resultat = itunes.ApiRequest.artistAction(r);
 		System.out.println("Résultat de la recherche sur l'API iTunes");
 		for (int k = 0; k < resultat.length; k++) {
-			System.out.println("Jour " + k + " : " + resultat[k]);
+			System.out.print(resultat[k]+"\t");
 		}
 	}
 }
