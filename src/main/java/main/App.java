@@ -14,7 +14,7 @@ import twitter.SearchTwitter;
 public class App {
 	public static void main(String[] args) throws Exception {
 //		rechercheTwitterBetaSeries("The Walking Dead", "Paris");
-		rechercheTwitterBetaSeries("LCS");
+		rechercheTwitterBetaSeries("The Walking Dead");
 
 		// rechercheTwitterItunes("The Walking Dead", "Paris");
 		// rechercheTwitterItunes("Eminem");
@@ -251,7 +251,7 @@ public class App {
 			nbTweetsPas += nbTweets;
 		}
 
-		System.out.println("Résultat de la recherche sur l'API Twitter");
+		System.out.println("Results on Twitter");
 		for (int k = 0; k < tweetsTotal.length; k++) {
 			System.out.print(tweetsTotal[k] + "\t");
 		}
@@ -260,7 +260,7 @@ public class App {
 		r2.setValeurWhere(recherche);
 		double[] res = BetaSeries.series(r2);
 		System.out.println();
-		System.out.println("Résultat de la recherche sur l'API BetaSeries");
+		System.out.println("Results on BetaSeries");
 		for (int k = 0; k < res.length; k++) {
 			System.out.print(res[k] + "\t");
 		}
@@ -305,7 +305,7 @@ public class App {
 			nbTweetsPas += nbTweets;
 		}
 
-		System.out.println("Résultat de la recherche sur l'API Twitter");
+		System.out.println("Results on Twitter");
 		for (int k = 0; k < tweetsTotal.length; k++) {
 			System.out.print(tweetsTotal[k] + "\t");
 		}
@@ -315,7 +315,7 @@ public class App {
 		Request r2 = new Request();
 		r2.setValeurWhere(recherche);
 		double[] res = BetaSeries.series(r2);
-		System.out.println("Résultat de la recherche sur l'API BetaSeries");
+		System.out.println("Results on BetaSeries");
 		for (int k = 0; k < res.length; k++) {
 			System.out.print(res[k] + "\t");
 		}
@@ -364,7 +364,7 @@ public class App {
 			nbTweetsPas += nbTweets;
 		}
 
-		System.out.println("Résultat de la recherche sur l'API Twitter");
+		System.out.println("Results on Twitter");
 		for (int k = 0; k < tweetsTotal.length; k++) {
 			System.out.print(tweetsTotal[k] +"\t");
 		}
@@ -373,7 +373,7 @@ public class App {
 		main.Request r = new main.Request();
 		r.setValeurWhere("recherche");
 		double[] resultat = itunes.ApiRequest.artistAction(r);
-		System.out.println("Résultat de la recherche sur l'API iTunes");
+		System.out.println("Results on iTunes");
 		for (int k = 0; k < resultat.length; k++) {
 			System.out.print(resultat[k]+"\t");
 		}
@@ -418,7 +418,7 @@ public class App {
 			nbTweetsPas += nbTweets;
 		}
 
-		System.out.println("Résultat de la recherche sur l'API Twitter");
+		System.out.println("Results on Twitter");
 		for (int k = 0; k < tweetsTotal.length; k++) {
 			System.out.print(tweetsTotal[k]+"\t");
 		}
@@ -427,7 +427,7 @@ public class App {
 		main.Request r = new main.Request();
 		r.setValeurWhere("recherche");
 		double[] resultat = itunes.ApiRequest.artistAction(r);
-		System.out.println("Résultat de la recherche sur l'API iTunes");
+		System.out.println("Results on iTunes");
 		for (int k = 0; k < resultat.length; k++) {
 			System.out.print(resultat[k]+"\t");
 		}

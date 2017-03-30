@@ -34,6 +34,7 @@ public class SearchTwitter {
 			List<Status> tweets = result.getTweets();
 			for (Status currentTweet : tweets) {
 				nbTweets++;
+				// currentTweet.get... pour récupérer des champs
 			}
 			while (result.hasNext())// there is more pages to load
 			{
