@@ -17,7 +17,7 @@ class ParametersStringBuilder {
     public static String buildSearchStringParams(SearchParameters params) {
         StringBuilder resultQuery = new StringBuilder();
         buildTerms(params.getTerms(), resultQuery);
-        resultQuery.append(params.getCountry().createSearchParameter()).append("&");
+//        resultQuery.append(params.getCountry().createSearchParameter()).append("&");
         resultQuery.append(params.getMedia().createSearchParameter()).append("&");
         //TODO: implement entities
         if (params.getEntity() != null) {
@@ -29,7 +29,7 @@ class ParametersStringBuilder {
         }
 
         resultQuery.append(params.getLimit().createSearchParameter()).append("&");
-        resultQuery.append(params.getLang().createSearchParameter());
+//        resultQuery.append(params.getLang().createSearchParameter());
         return resultQuery.toString();
     }
 

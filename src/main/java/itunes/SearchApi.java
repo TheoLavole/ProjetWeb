@@ -33,7 +33,9 @@ public class SearchApi {
     public static SearchResults search(SearchParameters params) {
         URL url;
         url = createUrl(searchUrl, buildSearchStringParams(params));
-        HttpURLConnection connection = openConnection(url);
+        URL url2 = createUrl(url.toString(), "&sort=recent");
+//        System.out.println(url2);
+        HttpURLConnection connection = openConnection(url2);
         return parseResponseData(readResponse(connection));
     }
 

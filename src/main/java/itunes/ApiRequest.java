@@ -19,28 +19,32 @@ import main.Request;
 public class ApiRequest {
 	private static Logger logger = Logger.getGlobal();
 
-	public static SearchParameters createParams(String terms) {
+	public static SearchParameters createParams(String[] terms) {
 		SearchParameters searchParams = new SearchParameters();
-		searchParams.addQueryTerm(terms);
-//		for (String term : terms) {
-//			searchParams.addQueryTerm(term);
-//		}
+		for (String term : terms) {
+			searchParams.addQueryTerm(term);
+		}
 		searchParams.setMedia(Media.MUSIC);
 		searchParams.setLimit(new Limit(200));
 		return searchParams;
 	}
 	
-	public static String[] testSearch( String term) throws Exception {
-		SearchResults data = SearchApi.search(createParams(term));
-		JSONObject tout = new JSONObject(data.toString());
+	public static List<String> testSearch(String term) throws Exception {
+		String[] mots = term.split(" ");
+		SearchResults data = SearchApi.search(createParams(mots));
+		
+		JSONObject tout = new JSONObject(data);
+		
 		JSONArray SearchResults = tout.getJSONArray("results");
+		
 		String[] artists = new String[SearchResults.length()];
+		List<String> dates = new ArrayList<String>();
+		
 		for(int i=0; i< SearchResults.length();i++){
 			artists[i] = SearchResults.getJSONObject(i).getString("artistName");
-
+			if (artists[i].compareTo(term)==0) dates.add(SearchResults.getJSONObject(i).getString("releaseDate").substring(0, 10));
 		}
-//		System.out.println(data.toString());
-		return artists;
+		return dates;
 	}    
 
 	public static double[] artistAction(Request r ) throws Exception{
@@ -54,18 +58,17 @@ public class ApiRequest {
 			calendar.add(Calendar.DATE, -1);
 			Date date =  calendar.getTime();
 			semaine.add(dateFormat.format(date));
-//			System.out.println(semaine.get(k));
 		}
 		double[] result = new double[7];
 		for(int i=0;i<7; i++){
 			result[i]=0;
 		}
+		
+		List<String> dates = testSearch(r.getValeurWhere());
+		
 		for(String jour:semaine){
-			String[] provisoire= testSearch(jour);
-			for(int i=0; i<provisoire.length;i++){
-				String a = provisoire[i].toLowerCase();
-				String b = r.getValeurWhere().toLowerCase();
-				if(a.contains(b)){
+			for(String date : dates){
+				if (date.compareTo(jour)==0){
 					result[semaine.indexOf(jour)]+=1;
 				}
 			}
